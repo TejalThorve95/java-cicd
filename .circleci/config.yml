@@ -1,0 +1,30 @@
+version: 2.1
+  orbs:
+    win: circleci/windows@2.2.0
+  jobs:
+    build:
+      executor:
+        name: win/default
+        size: "medium"
+      steps:
+        - checkout
+        - run: Wite Host "Hello, World for build"
+    test:
+      executor:
+        name: win/default
+        size: "medium"
+        steps:
+          - checkout
+          - run: Wite Host "Hello, World for test"
+  workflows:
+    build_and_test:
+      jobs:
+        - build
+        - test:
+            requires:
+              - build
+
+
+
+
+
